@@ -1,0 +1,33 @@
+@import '../variables';
+
+.header {
+  border-bottom: 1px solid $color-light-darck;
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    display: flex;
+
+    img {
+      margin-right: 15px;
+    }
+
+    h1 {
+      color: $color-darck;
+      font-size: clamp(1rem, 0.829vw + 0.806rem, 1.5rem);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    p {
+      color: $color-darck-light;
+      font-size: clamp(0.625rem, 0.622vw + 0.479rem, 1rem);
+      width: clamp(6.25rem, 16.684vw + 2.34rem, 16.313rem);
+    }
+  }
+}

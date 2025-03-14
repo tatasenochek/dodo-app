@@ -1,0 +1,28 @@
+@import '../variables';
+
+.button {
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 24px;
+}
+
+.cart-button{
+  background-color: $color-accent;
+  border: none;
+  color: $color-light;
+  display: flex;
+
+  &__price {
+    margin-right: 13px;
+  }
+
+  &__count{
+    display: flex;
+    gap: 8px;
+    padding-left: 13px;
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+;
+  }
+}

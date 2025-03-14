@@ -1,0 +1,22 @@
+.categories {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+
+  &__item {
+    background-color: $color-light-darck;
+    padding: clamp(0.5rem, 0.415vw + 0.403rem, 0.75rem) clamp(1.25rem, 1.036vw + 1.007rem, 1.875rem);
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: clamp(0.75rem, 0.415vw + 0.653rem, 1rem);
+  }
+
+  .active{
+    background-color: $color-darck;
+    color: $color-light;
+  }
+}
