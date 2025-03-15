@@ -1,0 +1,1 @@
+export const url = "https://66e86c47b17821a9d9dca8b5.mockapi.io/pizza";
