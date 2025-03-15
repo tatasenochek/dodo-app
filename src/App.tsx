@@ -1,6 +1,8 @@
 import { Categories } from "./components/Categories/Categories"
 import { Header } from "./components/Header/Header"
+import { PizzaList } from "./components/PizzaList/PizzaList"
 import { Sort } from "./components/Sort/Sort"
+import { Title } from "./components/Title/Title"
 import "./scss/app.scss"
 
 export function App() {
@@ -12,9 +14,8 @@ export function App() {
             <Categories/>
             <Sort/>
           </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-          </div>
+          <Title>Все пиццы</Title>
+          <PizzaList />
         </div>
       </div>
     </div>)

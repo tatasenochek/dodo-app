@@ -1,11 +1,12 @@
-@import '../variables';
+@use '../variables' as *;
 
 .button {
   border-radius: 50px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
-  padding: 12px 24px;
+  padding: 12px 18px;
+  font-family: "Nunito", sans-serif;
 }
 
 .cart-button{
@@ -22,7 +23,46 @@
     display: flex;
     gap: 8px;
     padding-left: 13px;
+    align-items: center;
     border-left: 1px solid rgba(255, 255, 255, 0.25);
-;
   }
+}
+
+.card-button {
+  border: 1px solid $color-accent;
+  color: $color-accent;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background-color: transparent;
+  transition: all 0.3s;
+
+  &__text {}
+
+  &__count {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-accent;
+    color: $color-light;
+    border-radius: 30px;
+    font-size: 14px;
+  }
+
+  svg {
+    stroke-width: 3px;
+  }
+}
+
+.card-button:hover {
+  color: $color-light;
+  background-color: $color-accent;
+
+  &__count {
+    color: $color-accent;
+    background-color: $color-light;
+  }
+  
 }

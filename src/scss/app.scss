@@ -1,8 +1,9 @@
-@import "./variables";
-@import "./components/header";
-@import "./components/button";
-@import "./components/categories";
-@import "./components/sort";
+@use "variables";
+@use "components/header";
+@use "components/button";
+@use "components/categories";
+@use "components/sort";
+@use "components/pizza-item";
 
 * {
 	box-sizing: border-box;
@@ -13,6 +14,10 @@
 a {
 	color: transparent;
 	text-decoration: none;
+}
+
+ul {
+	list-style: none;
 }
 
 body {
@@ -32,4 +37,12 @@ body {
   padding-bottom: 32px;
   flex-wrap: wrap;
   gap: 40px;
+}
+
+.content__items {
+	padding-top: 35px;
+	display: flex;
+	row-gap: 35px;
+	column-gap: 65px;
+	flex-wrap: wrap;
 }
