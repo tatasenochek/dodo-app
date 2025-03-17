@@ -1,33 +1,21 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { categories } from "../../constant/constant";
+import { ICategories } from "./types";
 
-const categories: string[] = [
-	"Все",
-	"Мясные",
-	"Вегетарианская",
-	"Гриль",
-	"Острые",
-	"Закрытые",
-];
-
-export function Categories() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  
-
+export function Categories({ activeIndexCategory, onclick }: ICategories) {
 	return (
 		<ul className="categories">
 			{categories.map((item, index) => (
 				<li
 					className={clsx(
-						`categories__item ${activeIndex === index ? "active" : ""}`
+						`categories__item ${activeIndexCategory === index ? "active" : ""}`
 					)}
-          key={index}
-          onClick={() => setActiveIndex(index)}
+					key={index}
+					onClick={() => onclick(index)}
 				>
 					{item}
 				</li>
 			))}
-			{/* <li className="active">Все</li> */}
 		</ul>
 	);
 }

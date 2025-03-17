@@ -1,25 +1,33 @@
 import clsx from "clsx";
-import { ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import { sortedParams } from "../../constant/constant";
+import { ISort } from "./types";
 
-const sortedParams: string[] = ["популярности", "цене", "алфавиту"];
-
-export function Sort() {
+export function Sort({
+	activeIndexSort,
+	onclick,
+	handlerSorted,
+	sortOrder,
+}: ISort) {
 	const [isVisible, setIsVisible] = useState<boolean>(true);
-	const [activeIndex, setActiveIndex] = useState(0);
 
 	function handlerActivSortedParams(index: number) {
-		setActiveIndex(index);
+		onclick(index);
 		setIsVisible(true);
 	}
 
 	return (
 		<div className="sort">
 			<div className="sort__label">
-				<ChevronUp size={14} />
+				{sortOrder ? (
+					<ChevronUp size={14} onClick={handlerSorted} />
+				) : (
+					<ChevronDown size={14} onClick={handlerSorted} />
+				)}
 				<b>Сортировка по:</b>
 				<span onClick={() => setIsVisible(!isVisible)}>
-					{sortedParams[activeIndex]}
+					{sortedParams[activeIndexSort].sortName}
 				</span>
 			</div>
 			<ul className={clsx(`sort__popup ${isVisible === true ? "hidden" : ""}`)}>
@@ -27,9 +35,9 @@ export function Sort() {
 					<li
 						key={index}
 						onClick={() => handlerActivSortedParams(index)}
-						className={clsx(`${activeIndex === index ? "active" : ""}`)}
+						className={clsx(`${activeIndexSort === index ? "active" : ""}`)}
 					>
-						{item}
+						{item.sortName}
 					</li>
 				))}
 			</ul>
