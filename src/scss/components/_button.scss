@@ -1,68 +1,116 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .button {
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 12px 18px;
-  font-family: "Nunito", sans-serif;
+	border-radius: 50px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 12px 18px;
+	font-family: "Nunito", sans-serif;
 }
 
-.cart-button{
-  background-color: $color-accent;
-  border: none;
-  color: $color-light;
-  display: flex;
+.cart-button {
+	background-color: $color-accent;
+	border: none;
+	color: $color-light;
+	display: flex;
 
-  &__price {
-    margin-right: 13px;
-  }
+	&__price {
+		margin-right: 13px;
+	}
 
-  &__count{
-    display: flex;
-    gap: 8px;
-    padding-left: 13px;
-    align-items: center;
-    border-left: 1px solid rgba(255, 255, 255, 0.25);
-  }
+	&__count {
+		display: flex;
+		gap: 8px;
+		padding-left: 13px;
+		align-items: center;
+		border-left: 1px solid rgba(255, 255, 255, 0.25);
+	}
 }
 
 .card-button {
-  border: 1px solid $color-accent;
-  color: $color-accent;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  background-color: transparent;
-  transition: all 0.3s;
+	border: 1px solid $color-accent;
+	color: $color-accent;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	background-color: transparent;
+	transition: all 0.3s;
 
-  &__text {}
+	&__text {
+	}
 
-  &__count {
-    width: 22px;
-    height: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $color-accent;
-    color: $color-light;
-    border-radius: 30px;
-    font-size: 14px;
-  }
+	&__count {
+		width: 22px;
+		height: 22px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $color-accent;
+		color: $color-light;
+		border-radius: 30px;
+		font-size: 14px;
+	}
 
-  svg {
-    stroke-width: 3px;
-  }
+	svg {
+		stroke-width: 3px;
+	}
 }
 
 .card-button:hover {
-  color: $color-light;
-  background-color: $color-accent;
+	color: $color-light;
+	background-color: $color-accent;
 
-  &__count {
-    color: $color-accent;
-    background-color: $color-light;
-  }
+	&__count {
+		color: $color-accent;
+		background-color: $color-light;
+	}
+}
+
+.cart__clear-button {
+	border: none;
+	background: transparent;
+	color: $color-darck-light;
+	font-size: 16px;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+
+	.cart__clear-button--icon {
+		stroke-width: 1.2px;
+		margin-right: 3px;
+	}
+}
+
+.cart__action--button-pay {
+	display: flex;
+	width: 211px;
+	height: 55px;
+	justify-content: center;
+	align-items: center;
+	color: $color-light;
+	background-color: $color-accent;
+	border: 1px solid;
+}
+
+.catr-item {
+	button {
+		width: 22px;
+		height: 22px;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		border: 1px solid;
+	}
+
+	&__counter--button {
+		color: $color-accent;
+	}
   
+	&__delete-button {
+		color: $color-darck-light;
+	}
 }

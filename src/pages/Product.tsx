@@ -1,26 +1,18 @@
-import { Plus } from "lucide-react";
-import { IPizzaItems } from "./types";
-import { useState } from "react";
 import clsx from "clsx";
+import { Plus } from "lucide-react";
+import { useState } from "react";
 
-const typePizza: string[] = ["тонкое", "традиционное"];
-
-export function PizzaItem({ pizza }: IPizzaItems) {
-	const [pizzaType, setPizzaType] = useState(0);
-  const [pizzaSize, setPizzaSize] = useState(0);
-  const [count, setCount] = useState(0)
-
+export function Product() {
+		const [pizzaType, setPizzaType] = useState(0);
+		const [pizzaSize, setPizzaSize] = useState(0);
+		const [count, setCount] = useState(0)
 	return (
 		<div className="pizza-block">
-			<img
-				className="pizza-block__image"
-				src={pizza.imageUrl}
-				alt={pizza.title}
-			/>
-			<h4 className="pizza-block__title">{pizza.title}</h4>
+			<img className="pizza-block__image" src="/image.png" alt="Pizza" />
+			<h4 className="pizza-block__title">Сырный цыпленок</h4>
 			<div className="pizza-block__selector">
 				<ul>
-					{pizza.types.map((i, index) => (
+					{/* {pizza.types.map((i, index) => (
 						<li
 							key={index}
 							onClick={() => setPizzaType(index)}
@@ -28,10 +20,10 @@ export function PizzaItem({ pizza }: IPizzaItems) {
 						>
 							{typePizza[i]}
 						</li>
-					))}
+					))} */}
 				</ul>
 				<ul>
-					{pizza.sizes.map((item, index) => (
+					{/* {pizza.sizes.map((item, index) => (
 						<li
 							key={index}
 							onClick={() => setPizzaSize(index)}
@@ -39,11 +31,11 @@ export function PizzaItem({ pizza }: IPizzaItems) {
 						>
 							{item} см.
 						</li>
-					))}
+					))} */}
 				</ul>
 			</div>
 			<div className="pizza-block__bottom">
-				<div className="pizza-block__price">от {pizza.price} ₽</div>
+				<div className="pizza-block__price">от 280 ₽</div>
 				<button
 					className="button card-button"
 					onClick={() => setCount(count + 1)}

@@ -1,0 +1,33 @@
+@use "../variables" as *;
+
+.not-found {
+	text-align: center;
+	margin: 40px auto;
+
+	&__title {
+		padding-bottom: 20px;
+	}
+
+	&__description {
+		color: $color-darck-light;
+		padding-bottom: 40px;
+		max-width: 320px;
+		margin: 0 auto;
+	}
+
+	&__link {
+		padding: 12px 24px;
+		border: 1px solid $color-accent;
+		color: $color-accent;
+		border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+		transition: all 0.3s;
+	}
+
+	&__link:hover {
+		border: 1px solid $color-accent;
+		background-color: $color-accent;
+		color: $color-light;
+	}
+}

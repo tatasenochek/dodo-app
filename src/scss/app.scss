@@ -4,6 +4,11 @@
 @use "components/categories";
 @use "components/sort";
 @use "components/pizza-item";
+@use "components/not-found";
+@use "components/empty";
+@use "components/cart";
+@use "components/cart-item";
+@use "components/product";
 
 * {
 	box-sizing: border-box;
@@ -45,4 +50,11 @@ body {
 	row-gap: 35px;
 	column-gap: 65px;
 	flex-wrap: wrap;
+}
+
+
+@media (max-width: 430px) {
+	.content__items {
+		justify-content: center;
+	}
 }

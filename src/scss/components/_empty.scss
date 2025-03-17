@@ -1,0 +1,42 @@
+@use "../variables" as *;
+
+.cart-empty {
+	max-width: 550px;
+	margin: 40px auto;
+	text-align: center;
+
+	&__title {
+		padding-bottom: 10px;
+	}
+
+	&__description {
+		font-size: 18px;
+		color: $color-darck-light;
+		padding-bottom: 40px;
+	}
+
+	&__image {
+		width: 300px;
+		height: 255px;
+    padding-bottom: 40px;
+	}
+
+	&__link {
+    display: block;
+    margin: 0 auto;
+    width: 210px;
+		padding: 12px 24px;
+		border: 1px solid $color-accent;
+		color: $color-accent;
+		border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+		transition: all 0.3s;
+	}
+
+	&__link:hover {
+		border: 1px solid $color-accent;
+		background-color: $color-accent;
+		color: $color-light;
+	}
+}
