@@ -1,9 +1,14 @@
 @use '../variables' as *;
 
 .pizza-block {
-  width: 280px;
+  width: 300px;
   text-align: center;
   margin-bottom: 65px;
+  color: $color-darck;
+  padding: 10px;
+  border: 1px solid $color-light;
+  border-radius: 20px;
+  transition: all 0.3s;
 
   &__image {
     width: 260px;
@@ -60,4 +65,10 @@
     line-height: 27px;
     letter-spacing: 0.015em;
   }
+}
+
+.pizza-block:hover {
+  transform: scale(1.02);
+  border: 1px solid $color-light-darck;
+  box-shadow: 0 0 15px $color-light-darck;
 }

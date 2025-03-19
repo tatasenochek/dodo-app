@@ -18,11 +18,17 @@
 	color: $color-darck-light;
 	transition: all 0.3s;
 	cursor: pointer;
-  background-color: transparent;
+	background-color: transparent;
 }
 
 .pagination__item:hover,
 .item-active {
 	border: 1px solid $color-accent;
 	color: $color-accent;
+}
+
+.disabled, .disabled:hover {
+	cursor: not-allowed;
+	border: 1px solid $color-light-darck;
+	color: $color-light-darck;
 }

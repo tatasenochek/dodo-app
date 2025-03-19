@@ -9,9 +9,14 @@ export function Pagination({
 	handlePrevPage,
 	handleNextPage,
 }: IPagination) {
-	return (
-		<ul className="pagination__list">
-			<button className="pagination__item" onClick={handlePrevPage}>
+  return (
+    <ul className="pagination__list">
+			<button
+				className={clsx(
+					`pagination__item ${currentPage === 1 ? "disabled" : ""}`
+				)}
+				onClick={handlePrevPage}
+			>
 				<ChevronLeft />
 			</button>
 
@@ -27,7 +32,12 @@ export function Pagination({
 				</li>
 			))}
 
-			<button className="pagination__item" onClick={handleNextPage}>
+			<button
+				className={clsx(
+					`pagination__item ${currentPage === pageCount ? "disabled" : ""}`
+				)}
+				onClick={handleNextPage}
+			>
 				<ChevronRight />
 			</button>
 		</ul>

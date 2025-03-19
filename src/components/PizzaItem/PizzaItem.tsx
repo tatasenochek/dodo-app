@@ -2,8 +2,8 @@ import { Plus } from "lucide-react";
 import { IPizzaItems } from "./types";
 import { useState } from "react";
 import clsx from "clsx";
-
-const typePizza: string[] = ["тонкое", "традиционное"];
+import { Link } from "react-router-dom";
+import { typePizza } from "../../constant/constant";
 
 export function PizzaItem({ pizza }: IPizzaItems) {
 	const [pizzaType, setPizzaType] = useState(0);
@@ -11,7 +11,7 @@ export function PizzaItem({ pizza }: IPizzaItems) {
   const [count, setCount] = useState(0)
 
 	return (
-		<div className="pizza-block">
+		<Link to={`/product/${pizza.id}`} className="pizza-block">
 			<img
 				className="pizza-block__image"
 				src={pizza.imageUrl}
@@ -57,6 +57,6 @@ export function PizzaItem({ pizza }: IPizzaItems) {
 					</span>
 				</button>
 			</div>
-		</div>
+		</Link>
 	);
 }
