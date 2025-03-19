@@ -3,12 +3,9 @@
 .header {
 	border-bottom: 1px solid $color-light-darck;
 	padding: 40px 0;
-
-	.container {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
 	&__logo {
 		display: flex;
@@ -29,5 +26,16 @@
 			font-size: clamp(0.625rem, 0.622vw + 0.479rem, 1rem);
 			width: clamp(6.25rem, 16.684vw + 2.34rem, 16.313rem);
 		}
+	}
+}
+
+@media (max-width: 779px) {
+	.header {
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	.search {
+		order: 3;
 	}
 }

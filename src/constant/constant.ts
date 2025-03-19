@@ -28,3 +28,5 @@ export const sortedParams: sortedType[] = [
 		sortProperty: "title",
 	},
 ];
+
+export const PAGE_SIZE = 4;

@@ -9,6 +9,8 @@
 @use "components/cart";
 @use "components/cart-item";
 @use "components/product";
+@use "components/search";
+@use "components/pagination";
 
 * {
 	box-sizing: border-box;
@@ -50,6 +52,10 @@ body {
 	row-gap: 35px;
 	column-gap: 65px;
 	flex-wrap: wrap;
+}
+
+.error {
+	padding-top: 40px;
 }
 
 

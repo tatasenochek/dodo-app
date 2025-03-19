@@ -1,0 +1,28 @@
+@use "../variables" as *;
+
+.pagination__list {
+	display: flex;
+	padding-bottom: 40px;
+	justify-content: center;
+	gap: 15px;
+}
+
+.pagination__item {
+	width: 40px;
+	height: 40px;
+	border: 1px solid $color-light-darck;
+	border-radius: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: $color-darck-light;
+	transition: all 0.3s;
+	cursor: pointer;
+  background-color: transparent;
+}
+
+.pagination__item:hover,
+.item-active {
+	border: 1px solid $color-accent;
+	color: $color-accent;
+}

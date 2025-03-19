@@ -1,11 +1,11 @@
 import { ShoppingCart } from "lucide-react";
 import { Button } from "../Button/Button";
 import { Link } from "react-router-dom";
+import { Search } from "../Search/Search";
 
 export function Header() {
 	return (
 		<header className="header">
-			<div className="container">
 				<Link to={"/"}>
 					<div className="header__logo">
 						<img src="/logo.svg" alt="логотип пиццерии" />
@@ -15,6 +15,7 @@ export function Header() {
 						</div>
 					</div>
 				</Link>
+				<Search/>
 				<Link to={"/cart"}>
 					<Button className="cart-button">
 						<span className="cart-button__price">520 ₽</span>
@@ -24,7 +25,6 @@ export function Header() {
 						</div>
 					</Button>
 				</Link>
-			</div>
 		</header>
 	);
 }
