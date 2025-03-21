@@ -1,26 +1,33 @@
-import { useContext, useEffect, useState } from "react";
-import { IPizza } from "../components/PizzaItem/types";
-import axios, { AxiosError } from "axios";
-import { PAGE_SIZE, sortedParams, url } from "../constant/constant";
+import { useEffect } from "react";
+import { PAGE_SIZE, sortedParams } from "../constant/constant";
 import { Categories } from "../components/Categories/Categories";
 import { Sort } from "../components/Sort/Sort";
 import { Title } from "../components/Title/Title";
 import { PizzaList } from "../components/PizzaList/PizzaList";
 import { PizzaItem } from "../components/PizzaItem/PizzaItem";
 import { Loader } from "../components/PizzaItem/Loader";
-import { SearchContext } from "../context/search.context";
 import { Pagination } from "../components/Pagination/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../store/store";
+import {
+	setActiveIndexCategory,
+	setActiveIndexSort,
+	setSortOrder,
+} from "../store/slice/filterSlice";
+import {
+	fetchProducts,
+	fetchProductsCount,
+	setCurrentPage,
+} from "../store/slice/productsSlice";
 
 export function Home() {
-	const [pizzas, setPizzas] = useState<IPizza[]>([]);
-	const [pizzasCount, setPizzasCount] = useState(0);
-	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState<string | undefined>();
-	const [currentPage, setCurrentPage] = useState(1);
-	const [activeIndexCategory, setActiveIndexCategory] = useState(0);
-	const [activeIndexSort, setActiveIndexSort] = useState(0);
-	const [sortOrder, setSortOrder] = useState(true);
-	const { searchValue } = useContext(SearchContext);
+	const { pizzas, status, pizzasCount, currentPage } = useSelector(
+		(state: RootState) => state.products
+	);
+	const { activeIndexCategory, activeIndexSort, sortOrder, searchValue } =
+		useSelector((state: RootState) => state.filter);
+	const dispatch = useDispatch();
+	const appDispatch = useAppDispatch();
 
 	const category =
 		activeIndexCategory == 0 ? "" : `?category=${activeIndexCategory}`;
@@ -31,36 +38,17 @@ export function Home() {
 	const filterName = `&filter=${searchValue}`;
 
 	function handlerSorted() {
-		setSortOrder(!sortOrder);
+		dispatch(setSortOrder(!sortOrder));
 	}
 
 	async function getPizzasCount() {
-		const res = await axios.get<IPizza[]>(`${url}`);
-		setPizzasCount(res.data.length);
+		appDispatch(fetchProductsCount({ category, sort, sortASC, filterName }));
 	}
 
 	async function getPizzas() {
-		setPizzas([]);
-		setIsLoading(true);
-		try {
-			const res = await axios.get<IPizza[]>(
-				`${url}${category}${sort}${sortASC}${filterName}`,
-				{
-					params: {
-						page: currentPage,
-						limit: PAGE_SIZE,
-					},
-				}
-			);
-			setPizzas(res.data);
-			setError(undefined);
-		} catch (e) {
-			if (e instanceof AxiosError) {
-				setError(e.message);
-			}
-		} finally {
-			setIsLoading(false);
-		}
+		appDispatch(
+			fetchProducts({ category, sort, sortASC, filterName, currentPage })
+		);
 	}
 
 	useEffect(() => {
@@ -76,13 +64,13 @@ export function Home() {
 
 	const handleNextPage = () => {
 		if (currentPage < pageCount) {
-			setCurrentPage(currentPage + 1);
+			dispatch(setCurrentPage(currentPage + 1));
 		}
 	};
 
 	const handlePrevPage = () => {
 		if (currentPage > 1) {
-			setCurrentPage(currentPage - 1);
+			dispatch(setCurrentPage(currentPage - 1));
 		}
 	};
 
@@ -93,32 +81,34 @@ export function Home() {
 			<div className="content__top">
 				<Categories
 					activeIndexCategory={activeIndexCategory}
-					onclick={(i: number) => setActiveIndexCategory(i)}
+					onclick={(i: number) => dispatch(setActiveIndexCategory(i))}
 				/>
 				<Sort
 					activeIndexSort={activeIndexSort}
-					onclick={(i: number) => setActiveIndexSort(i)}
+					onclick={(i: number) => dispatch(setActiveIndexSort(i))}
 					handlerSorted={handlerSorted}
 					sortOrder={sortOrder}
 				/>
 			</div>
 			<Title>Все пиццы</Title>
-			{error ? (
+			{status === "error" ? (
 				<p className="error">К сожалению, такой пиццы у нас нет 😔</p>
 			) : (
 				<PizzaList>
-					{isLoading === true
+					{status === "loading"
 						? [...new Array(4)].map((_, index) => <Loader key={index} />)
 						: pizzas.map((pizza) => <PizzaItem pizza={pizza} key={pizza.id} />)}
 				</PizzaList>
 			)}
-			<Pagination
-				pageCount={pageCount}
-				currentPage={currentPage}
-				setCurrentPage={(i) => setCurrentPage(i)}
-				handlePrevPage={() => handlePrevPage()}
-				handleNextPage={() => handleNextPage()}
-			/>
+			{pizzas.length > 0 && (
+				<Pagination
+					pageCount={pageCount}
+					currentPage={currentPage}
+					setCurrentPage={(i) => dispatch(setCurrentPage(i))}
+					handlePrevPage={() => handlePrevPage()}
+					handleNextPage={() => handleNextPage()}
+				/>
+			)}
 		</>
 	);
 }

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sortedParams } from "../../constant/constant";
 import { ISort } from "./types";
 
@@ -11,14 +11,29 @@ export function Sort({
 	sortOrder,
 }: ISort) {
 	const [isVisible, setIsVisible] = useState<boolean>(true);
+	const sortRef = useRef<HTMLDivElement>(null);
 
 	function handlerActivSortedParams(index: number) {
 		onclick(index);
 		setIsVisible(true);
 	}
 
+	function handleClickOutside(e: MouseEvent) {
+		if (!sortRef.current || !sortRef.current.contains(e.target as Node)) {
+			setIsVisible(true);
+		}
+	}
+
+	useEffect(() => {
+		document.addEventListener("click", handleClickOutside);
+
+		return () => {
+			document.removeEventListener("click", handleClickOutside);
+		}
+	}, []);
+
 	return (
-		<div className="sort">
+		<div ref={sortRef} className="sort">
 			<div className="sort__label">
 				{sortOrder ? (
 					<ChevronUp size={14} onClick={handlerSorted} />

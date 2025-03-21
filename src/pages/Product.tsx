@@ -1,38 +1,46 @@
-import axios, { AxiosError } from "axios";
 import clsx from "clsx";
 import { ChevronLeft, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { IPizza } from "../components/PizzaItem/types";
-import { typePizza, url } from "../constant/constant";
+import { typePizza } from "../constant/constant";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../store/store";
+import { fetchProductById } from "../store/slice/productsSlice";
+import { addProduct, IProduct } from "../store/slice/cartSlice";
 
 export function Product() {
 	const [pizzaType, setPizzaType] = useState(0);
 	const [pizzaSize, setPizzaSize] = useState(0);
 	const [count, setCount] = useState(0);
-	const [pizza, setPizza] = useState<IPizza>();
-	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState<string | undefined>();
 	const { id } = useParams();
+	const { pizza } = useSelector((state: RootState) => state.products);
+
+	const dispatch = useDispatch();
+	const appDispatch = useAppDispatch();
 
 	async function getPizza() {
-		setIsLoading(true);
-		try {
-			const res = await axios.get<IPizza>(`${url}/${id}`);
-			setPizza(res.data);
-			setError(undefined);
-		} catch (e) {
-			if (e instanceof AxiosError) {
-				setError(e.message);
-			}
-		} finally {
-			setIsLoading(false);
-		}
+		appDispatch(fetchProductById({ id }));
 	}
 
 	useEffect(() => {
 		getPizza();
 	}, []);
+
+	function handlerAddProduct() {
+		setCount(count + 1);
+		if (pizza) {
+			const addPizza: IProduct = {
+				id: pizza.id,
+				imageUrl: pizza.imageUrl,
+				title: pizza.title,
+				type: pizzaType,
+				size: pizza.sizes[pizzaSize],
+				price: pizza.price,
+				count: 1,
+			};
+			dispatch(addProduct(addPizza));
+		}
+	}
 
 	return (
 		<div className="product">
@@ -76,7 +84,7 @@ export function Product() {
 					<div className="product__price">от {pizza?.price} ₽</div>
 					<button
 						className="button card-button"
-						onClick={() => setCount(count + 1)}
+						onClick={handlerAddProduct}
 					>
 						<Plus size={16} />
 						<span className="card-button__text">Добавить</span>

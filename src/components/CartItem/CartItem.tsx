@@ -1,29 +1,54 @@
 import { Minus, Plus, X } from "lucide-react";
 import { Button } from "../Button/Button";
+import { addProduct, deleteProduct, IProduct, removeProduct } from "../../store/slice/cartSlice";
+import { typePizza } from "../../constant/constant";
+import { useDispatch } from "react-redux";
 
-export function CartItem() {
+export function CartItem({ product }: { product: IProduct }) {
+	const dispatch = useDispatch();
+
+	function handlerAddProduct() {
+		dispatch(addProduct(product));
+	}
+
+	function handlerRemoveProduct() {
+		dispatch(removeProduct(product));
+	}
+
+	function handlerDeleteProduct() {
+		dispatch(deleteProduct(product));
+	}
+
 	return (
 		<li className="catr-item">
 			<div className="catr-item__description">
 				<img
 					className="catr-item__description--image"
-					src="/image.png"
-					alt="Пицца"
+					src={product.imageUrl}
+					alt={product.title}
 				/>
-				<h2 className="catr-item__description--title">Сырный цыпленок</h2>
-				<p className="catr-item__description--info">тонкое тесто, 26 см.</p>
+				<h2 className="catr-item__description--title">{product.title}</h2>
+				<p className="catr-item__description--info">
+					{typePizza[product.type]}, {product.size} см, {product.price}₽
+				</p>
 			</div>
 			<div className="catr-item__counter">
-				<Button className="catr-item__counter--button">
+				<Button
+					onClick={handlerRemoveProduct}
+					className="catr-item__counter--button"
+				>
 					<Minus size={10} />
 				</Button>
-				<p>2</p>
-				<Button className="catr-item__counter--button">
+				<p>{product.count}</p>
+				<Button
+					onClick={handlerAddProduct}
+					className="catr-item__counter--button"
+				>
 					<Plus size={10} />
 				</Button>
 			</div>
-			<p className="catr-item__price">770 ₽</p>
-			<Button className="catr-item__delete-button">
+			<p className="catr-item__price">{product.price * product.count} ₽</p>
+			<Button onClick={handlerDeleteProduct} className="catr-item__delete-button">
 				<X size={10} />
 			</Button>
 		</li>
