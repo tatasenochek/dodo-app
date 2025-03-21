@@ -8,10 +8,9 @@ import { RootState, useAppDispatch } from "../store/store";
 import { fetchProductById } from "../store/slice/productsSlice";
 import { addProduct, IProduct } from "../store/slice/cartSlice";
 
-export function Product() {
+export default function Product() {
 	const [pizzaType, setPizzaType] = useState(0);
 	const [pizzaSize, setPizzaSize] = useState(0);
-	const [count, setCount] = useState(0);
 	const { id } = useParams();
 	const { pizza } = useSelector((state: RootState) => state.products);
 
@@ -27,7 +26,6 @@ export function Product() {
 	}, []);
 
 	function handlerAddProduct() {
-		setCount(count + 1);
 		if (pizza) {
 			const addPizza: IProduct = {
 				id: pizza.id,
@@ -88,13 +86,6 @@ export function Product() {
 					>
 						<Plus size={16} />
 						<span className="card-button__text">Добавить</span>
-						<span
-							className={clsx(
-								`${count === 0 ? "hidden" : "card-button__count"}`
-							)}
-						>
-							{count}
-						</span>
 					</button>
 				</div>
 			</div>

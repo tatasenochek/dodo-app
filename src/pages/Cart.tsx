@@ -8,7 +8,7 @@ import { RootState } from "../store/store";
 import { clearProducts } from "../store/slice/cartSlice";
 import { Empty } from "../components/Empty/Empty";
 
-export function Cart() {
+export default function Cart() {
 	const { products, totalPrice, count } = useSelector(
 		(state: RootState) => state.cart
 	);

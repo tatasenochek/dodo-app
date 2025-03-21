@@ -3,6 +3,7 @@ import { Button } from "../Button/Button";
 import { addProduct, deleteProduct, IProduct, removeProduct } from "../../store/slice/cartSlice";
 import { typePizza } from "../../constant/constant";
 import { useDispatch } from "react-redux";
+import clsx from "clsx";
 
 export function CartItem({ product }: { product: IProduct }) {
 	const dispatch = useDispatch();
@@ -35,7 +36,7 @@ export function CartItem({ product }: { product: IProduct }) {
 			<div className="catr-item__counter">
 				<Button
 					onClick={handlerRemoveProduct}
-					className="catr-item__counter--button"
+					className={clsx(`catr-item__counter--button ${product.count == 1 ? "disabled" : ""}`)}
 				>
 					<Minus size={10} />
 				</Button>
@@ -48,7 +49,10 @@ export function CartItem({ product }: { product: IProduct }) {
 				</Button>
 			</div>
 			<p className="catr-item__price">{product.price * product.count} ₽</p>
-			<Button onClick={handlerDeleteProduct} className="catr-item__delete-button">
+			<Button
+				onClick={handlerDeleteProduct}
+				className="catr-item__delete-button"
+			>
 				<X size={10} />
 			</Button>
 		</li>

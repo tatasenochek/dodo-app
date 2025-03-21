@@ -1,15 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./scss/app.scss";
 import { Home } from "./pages/Home";
-import { Cart } from "./pages/Cart";
-import { Product } from "./pages/Product";
 import { NotFound } from "./pages/NotFound";
 import { LayoutHome } from "./layout/LayoutHome";
+import { lazy, Suspense } from "react";
+
+const Cart = lazy(() => import("./pages/Cart.tsx"));
+const Product = lazy(() => import("./pages/Product"));
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: (<LayoutHome />),
+		element: <LayoutHome />,
 		children: [
 			{
 				path: "/",
@@ -17,11 +19,19 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/cart",
-				element: <Cart />,
+				element: (
+					<Suspense fallback={<>Идет загрузка корзины...</>}>
+						<Cart />
+					</Suspense>
+				),
 			},
 			{
 				path: "/product/:id",
-				element: <Product />,
+				element: (
+					<Suspense fallback={<>Загружаем данные о товаре...</>}>
+						<Product />
+					</Suspense>
+				),
 			},
 			{
 				path: "/*",

@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { loadState } from "../storage";
+
+export const FILTER = "filterData";
 
 interface IFilterState {
 	activeIndexCategory: number;
@@ -7,7 +10,7 @@ interface IFilterState {
   searchValue: string;
 }
 
-const initialState: IFilterState = {
+const initialState: IFilterState = loadState<IFilterState>(FILTER) ?? {
 	activeIndexCategory: 0,
 	activeIndexSort: 0,
   sortOrder: true,

@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { loadState } from "../storage";
+
+export const CART = "cartData";
 
 export interface IProduct {
 	id: string;
@@ -16,7 +19,7 @@ interface ICartState {
 	products: IProduct[];
 }
 
-const initialState: ICartState = {
+const initialState: ICartState = loadState<ICartState>(CART) ?? {
 	totalPrice: 0,
 	count: 0,
 	products: [],

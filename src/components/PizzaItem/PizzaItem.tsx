@@ -13,12 +13,10 @@ import {
 export function PizzaItem({ pizza }: IPizzaItems) {
 	const [pizzaType, setPizzaType] = useState(0);
 	const [pizzaSize, setPizzaSize] = useState(0);
-	const [count, setCount] = useState(0);
 
 	const dispatch = useDispatch();
 
 	function handlerAddProduct() {
-		setCount(count + 1);
 		const addPizza: IProduct = {
 			id: pizza.id,
 			imageUrl: pizza.imageUrl,
@@ -72,15 +70,10 @@ export function PizzaItem({ pizza }: IPizzaItems) {
 				</ul>
 			</div>
 			<div className="pizza-block__bottom">
-				<div className="pizza-block__price">от {pizza.price} ₽</div>
+				<div className="pizza-block__price">{pizza.price} ₽</div>
 				<button className="button card-button" onClick={handlerAddProduct}>
 					<Plus size={16} />
 					<span className="card-button__text">Добавить</span>
-					<span
-						className={clsx(`${count === 0 ? "hidden" : "card-button__count"}`)}
-					>
-						{count}
-					</span>
 				</button>
 			</div>
 		</div>
