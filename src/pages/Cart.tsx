@@ -12,14 +12,21 @@ export default function Cart() {
 	const { products, totalPrice, count } = useSelector(
 		(state: RootState) => state.cart
 	);
+	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 	const dispatch = useDispatch();
 
 	function handlerClearProductsCart() {
-		const response = confirm("Вы действительно хотите удалить все пиццы из корзины?")
+		const response = confirm(
+			"Вы действительно хотите удалить все пиццы из корзины?"
+		);
 		if (response) {
-			dispatch(clearProducts())
+			dispatch(clearProducts());
 		}
-		return
+		return;
+	}
+
+	function handlerOrder() {
+		dispatch(clearProducts());
 	}
 
 	return (
@@ -59,9 +66,13 @@ export default function Cart() {
 							<ChevronLeft />
 							Вернуться назад
 						</Link>
-						<Button className="cart__action--button-pay">
-							Оплатить сейчас
-						</Button>
+						{isAuth ? (
+							""
+						) : (
+							<Link to="/success" >
+								<Button onClick={handlerOrder} className="cart__action--button-pay">Оплатить сейчас</Button>
+							</Link>
+						)}
 					</div>
 				</>
 			)}

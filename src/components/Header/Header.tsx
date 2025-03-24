@@ -1,14 +1,21 @@
-import { ShoppingCart } from "lucide-react";
+import { LogIn, LogOut, ShoppingCart } from "lucide-react";
 import { Button } from "../Button/Button";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { setAuth } from "../../store/slice/authSlice";
 
 export function Header() {
 	const { totalPrice, count } = useSelector((state: RootState) => state.cart);
+	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
 	const location = useLocation();
 	const params = useParams();
+	const dispatch = useDispatch();
+
+	function handlerAuth() {
+		dispatch(setAuth());
+	}
 
 	return (
 		<header className="header">
@@ -22,12 +29,13 @@ export function Header() {
 				</div>
 			</Link>
 			{location.pathname === `/product/${params.id}` ||
-			location.pathname === "/cart" ? (
+			location.pathname === "/cart" ||
+			location.pathname === "/success" ? (
 				""
 			) : (
 				<Search />
 			)}
-			{location.pathname === "/cart" ? (
+			{location.pathname === "/cart" || location.pathname === "/success" ? (
 				""
 			) : (
 				<Link to={"/cart"}>
@@ -46,6 +54,9 @@ export function Header() {
 					</Button>
 				</Link>
 			)}
+			<Button onClick={handlerAuth} className="auth-button">
+				{isAuth ? <LogIn size={25.5} /> : <LogOut size={25.5} />}
+			</Button>
 		</header>
 	);
 }

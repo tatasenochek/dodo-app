@@ -1,0 +1,28 @@
+@use "../variables" as *;
+
+.success {
+  text-align: center;
+  margin-top: 40px;
+  background-color: rgb(239, 255, 239);
+  padding: 40px;
+  border-radius: 20px;
+
+	&__image {
+    width: 200px;
+	}
+
+	&__title {
+    margin-bottom: 40px;
+	}
+
+	&__link {
+    color: $color-darck;
+    padding: 3px;
+    transition: border-bottom 0.3s;
+	}
+
+  &__link:hover {
+    border-bottom: 1px solid $color-darck;
+	}
+
+}

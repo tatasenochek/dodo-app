@@ -5,8 +5,9 @@ import { NotFound } from "./pages/NotFound";
 import { LayoutHome } from "./layout/LayoutHome";
 import { lazy, Suspense } from "react";
 
-const Cart = lazy(() => import("./pages/Cart.tsx"));
+const Cart = lazy(() => import("./pages/Cart"));
 const Product = lazy(() => import("./pages/Product"));
+const Success = lazy(() => import("./pages/Success"));
 
 const router = createBrowserRouter([
 	{
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
 				element: (
 					<Suspense fallback={<>Загружаем данные о товаре...</>}>
 						<Product />
+					</Suspense>
+				),
+			},
+			{
+				path: "/success",
+				element: (
+					<Suspense fallback={<>Идет отправка заказа...</>}>
+						<Success />
 					</Suspense>
 				),
 			},
