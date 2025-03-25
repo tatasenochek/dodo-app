@@ -7,7 +7,7 @@ interface IAuthState {
 	isAuth: boolean;
 }
 
-const initialState: IAuthState = loadState<IAuthState>(AUTH) ?? {
+export const initialState: IAuthState = loadState<IAuthState>(AUTH) ?? {
 	isAuth: false,
 };
 

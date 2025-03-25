@@ -70,7 +70,7 @@ export const fetchProductsCount = createAsyncThunk<
 	}
 );
 
-const initialState: IProductsState = {
+export const initialState: IProductsState = {
 	pizzas: [],
 	pizza: null,
 	pizzasCount: 0,
@@ -126,6 +126,7 @@ export const productsSlice = createSlice({
 		builder.addCase(
 			fetchProductsCount.fulfilled,
 			(state, action: PayloadAction<IPizza[]>) => {
+				state.status = Status.SUCCESS
 				state.pizzasCount = action.payload.length;
 			}
 		);

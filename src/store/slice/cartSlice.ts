@@ -19,7 +19,7 @@ interface ICartState {
 	products: IProduct[];
 }
 
-const initialState: ICartState = loadState<ICartState>(CART) ?? {
+export const initialState: ICartState = loadState<ICartState>(CART) ?? {
 	totalPrice: 0,
 	count: 0,
 	products: [],

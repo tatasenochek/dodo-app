@@ -10,7 +10,7 @@ interface IFilterState {
   searchValue: string;
 }
 
-const initialState: IFilterState = loadState<IFilterState>(FILTER) ?? {
+export const initialState: IFilterState = loadState<IFilterState>(FILTER) ?? {
 	activeIndexCategory: 0,
 	activeIndexSort: 0,
   sortOrder: true,

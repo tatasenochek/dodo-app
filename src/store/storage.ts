@@ -1,12 +1,12 @@
 export function loadState<T>(key: string): T | undefined {
 	try {
 		const state = localStorage.getItem(key);
-		if (!state) {
+		if (!state || typeof state !== "string") {
 			return undefined;
 		}
 		return JSON.parse(state);
 	} catch (e) {
-		console.error(e);
+		console.error(`Не удалось распарсить данные для ключа ${key}:`, e);
 		return undefined;
 	}
 }
