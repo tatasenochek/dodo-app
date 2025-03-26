@@ -14,7 +14,7 @@ export function Empty() {
 			</p>
 			<img
 				className={styles["cart-empty__image"]}
-				src="/empty.png"
+				src="./empty.png"
 				alt="Empty cart"
 			/>
 			<Link to="/" className={styles["cart-empty__link"]}>
