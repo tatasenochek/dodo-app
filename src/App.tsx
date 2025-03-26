@@ -15,7 +15,7 @@ const router = createBrowserRouter([
 		element: <LayoutHome />,
 		children: [
 			{
-				path: "/",
+				path: "/dodo-app/",
 				element: <Home />,
 			},
 			{
