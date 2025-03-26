@@ -1,5 +1,6 @@
 {
 	"name": "dodo-app",
+	"homepage": "https://tatasenochek.github.io/dodo-app",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",

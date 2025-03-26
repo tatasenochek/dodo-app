@@ -9,46 +9,51 @@ const Cart = lazy(() => import("./pages/Cart"));
 const Product = lazy(() => import("./pages/Product"));
 const Success = lazy(() => import("./pages/Success"));
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+	[
+		{
+			path: "/",
+			element: <LayoutHome />,
+			children: [
+				{
+					path: "/",
+					element: <Home />,
+				},
+				{
+					path: "/cart",
+					element: (
+						<Suspense fallback={<>Идет загрузка корзины...</>}>
+							<Cart />
+						</Suspense>
+					),
+				},
+				{
+					path: "/product/:id",
+					element: (
+						<Suspense fallback={<>Загружаем данные о товаре...</>}>
+							<Product />
+						</Suspense>
+					),
+				},
+				{
+					path: "/success",
+					element: (
+						<Suspense fallback={<>Идет отправка заказа...</>}>
+							<Success />
+						</Suspense>
+					),
+				},
+				{
+					path: "/*",
+					element: <NotFound />,
+				},
+			],
+		},
+	],
 	{
-		path: "/",
-		element: <LayoutHome />,
-		children: [
-			{
-				path: "/dodo-app/",
-				element: <Home />,
-			},
-			{
-				path: "/cart",
-				element: (
-					<Suspense fallback={<>Идет загрузка корзины...</>}>
-						<Cart />
-					</Suspense>
-				),
-			},
-			{
-				path: "/product/:id",
-				element: (
-					<Suspense fallback={<>Загружаем данные о товаре...</>}>
-						<Product />
-					</Suspense>
-				),
-			},
-			{
-				path: "/success",
-				element: (
-					<Suspense fallback={<>Идет отправка заказа...</>}>
-						<Success />
-					</Suspense>
-				),
-			},
-			{
-				path: "/*",
-				element: <NotFound />,
-			},
-		],
-	},
-]);
+		basename: "/dodo-app",
+	}
+);
 
 export function App() {
 	return <RouterProvider router={router}></RouterProvider>;
