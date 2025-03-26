@@ -1,3 +1,4 @@
+import styles from "./header.module.scss";
 import { LogIn, LogOut, ShoppingCart } from "lucide-react";
 import { Button } from "../Button/Button";
 import { Link, useLocation, useParams } from "react-router-dom";
@@ -18,9 +19,9 @@ export function Header() {
 	}
 
 	return (
-		<header className="header">
+		<header className={styles["header"]}>
 			<Link to={"/"}>
-				<div className="header__logo">
+				<div className={styles["header__logo"]}>
 					<img src="/logo.svg" alt="логотип пиццерии" />
 					<div>
 						<h1>React Pizza</h1>
@@ -44,8 +45,8 @@ export function Header() {
 							"Корзина пуста"
 						) : (
 							<>
-								<span className="cart-button__price">{totalPrice} ₽</span>
-								<div className="cart-button__count">
+								<span className={styles["cart-button__price"]}>{totalPrice} ₽</span>
+								<div className={styles["cart-button__count"]}>
 									<ShoppingCart size={16} />
 									<span>{count}</span>
 								</div>

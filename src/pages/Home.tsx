@@ -1,3 +1,4 @@
+import styles from "../scss/pages/home.module.scss";
 import { useEffect } from "react";
 import { PAGE_SIZE, sortedParams } from "../constant/constant";
 import { Categories } from "../components/Categories/Categories";
@@ -78,7 +79,7 @@ export function Home() {
 
 	return (
 		<>
-			<div className="content__top">
+			<div className={styles["content__top"]}>
 				<Categories
 					activeIndexCategory={activeIndexCategory}
 					onclick={(i: number) => dispatch(setActiveIndexCategory(i))}
@@ -92,7 +93,7 @@ export function Home() {
 			</div>
 			<Title>Все пиццы</Title>
 			{status === "error" ? (
-				<p className="error">К сожалению, такой пиццы у нас нет 😔</p>
+				<p className={styles["error"]}>К сожалению, такой пиццы у нас нет 😔</p>
 			) : (
 				<PizzaList>
 					{status === "loading"

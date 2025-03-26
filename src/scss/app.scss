@@ -1,17 +1,4 @@
 @use "variables";
-@use "components/header";
-@use "components/button";
-@use "components/categories";
-@use "components/sort";
-@use "components/pizza-item";
-@use "components/not-found";
-@use "components/empty";
-@use "components/cart";
-@use "components/cart-item";
-@use "components/product";
-@use "components/search";
-@use "components/pagination";
-@use "components/success";
 
 * {
 	box-sizing: border-box;
@@ -36,33 +23,4 @@ body {
 	min-width: 320px;
 	height: 100vh;
 	font-size: 16px;
-}
-
-.content__top {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 40px;
-  padding-bottom: 32px;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.content__items {
-	padding-top: 35px;
-	display: flex;
-	row-gap: 35px;
-	column-gap: 65px;
-	flex-wrap: wrap;
-}
-
-.error {
-	padding: 40px;
-	text-align: center;
-}
-
-
-@media (max-width: 430px) {
-	.content__items {
-		justify-content: center;
-	}
 }

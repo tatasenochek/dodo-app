@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use "../../scss/variables" as *;
 
 .pagination__list {
 	display: flex;
@@ -19,6 +19,11 @@
 	transition: all 0.3s;
 	cursor: pointer;
 	background-color: transparent;
+	position: relative;
+
+	svg {
+		position: absolute;
+	}
 }
 
 .pagination__item:hover,

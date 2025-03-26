@@ -1,0 +1,55 @@
+@use "../../scss/variables" as *;
+
+button {
+	border-radius: 50px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 12px 18px;
+	font-family: "Nunito", sans-serif;
+}
+
+.cart-button {
+	background-color: $color-accent;
+	border: none;
+	color: $color-light;
+	display: flex;
+	width: 100%;
+}
+
+.cart__clear-button {
+	border: none;
+	background: transparent;
+	color: $color-darck-light;
+	font-size: 16px;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+}
+
+.cart__clear-button--icon {
+	stroke-width: 1.2px;
+	margin-right: 3px;
+}
+
+.cart__action--button-pay {
+	display: flex;
+	width: 211px;
+	height: 55px;
+	justify-content: center;
+	align-items: center;
+	color: $color-light;
+	background-color: $color-accent;
+	border: 1px solid;
+}
+
+.auth-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: $color-light;
+	background-color: $color-accent;
+	border: none;
+	padding: 10px 10px;
+}

@@ -1,12 +1,12 @@
-@use "../variables" as *;
+@use "../../scss/variables" as *;
 
 .catr-item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 20px;
-  padding-top: 30px;
-  border-top: 1px solid $color-light-darck;
+	padding-top: 30px;
+	border-top: 1px solid $color-light-darck;
 
 	&__description {
 		display: grid;
@@ -44,6 +44,36 @@
 		font-weight: 700;
 		font-size: 22px;
 	}
+
+	.cart-item__button {
+		width: 22px;
+		height: 22px;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		border: 1px solid;
+	}
+
+	.disabled,
+	.disabled:hover {
+		cursor: not-allowed;
+		border: 1px solid $color-light-darck;
+		color: $color-light-darck;
+
+		svg {
+			color: $color-light-darck;
+		}
+	}
+
+	.cart-item__counter--button {
+		color: $color-accent;
+	}
+
+	.cart-item__delete-button {
+		color: $color-darck-light;
+	}
 }
 
 @media (max-width: 550px) {
@@ -52,20 +82,19 @@
 		grid-template-columns: repeat(3, auto);
 		grid-template-rows: repeat(2, auto);
 		grid-row-gap: 10px;
-    
 
 		&__description {
 			grid-column-start: 1;
-      grid-column-end: 3;
+			grid-column-end: 3;
 		}
 
 		&__counter {
-      grid-row: 2;
-      grid-column-start: 2;
+			grid-row: 2;
+			grid-column-start: 2;
 		}
 
 		&__price {
-      grid-column-start: 1;
+			grid-column-start: 1;
 		}
 
 		&__delete-button {

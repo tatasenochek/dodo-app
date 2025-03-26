@@ -1,3 +1,4 @@
+import styles from "./sort.module.scss";
 import clsx from "clsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -29,12 +30,12 @@ export function Sort({
 
 		return () => {
 			document.removeEventListener("click", handleClickOutside);
-		}
+		};
 	}, []);
 
 	return (
-		<div ref={sortRef} className="sort">
-			<div className="sort__label">
+		<div ref={sortRef} className={styles["sort"]}>
+			<div className={styles["sort__label"]}>
 				{sortOrder ? (
 					<ChevronUp size={14} onClick={handlerSorted} />
 				) : (
@@ -45,12 +46,12 @@ export function Sort({
 					{sortedParams[activeIndexSort].sortName}
 				</span>
 			</div>
-			<ul className={clsx(`sort__popup ${isVisible === true ? "hidden" : ""}`)}>
+			<ul className={clsx(styles["sort__popup"], isVisible === true && styles["hidden"])}>
 				{sortedParams.map((item, index) => (
 					<li
 						key={index}
 						onClick={() => handlerActivSortedParams(index)}
-						className={clsx(`${activeIndexSort === index ? "active" : ""}`)}
+						className={clsx(activeIndexSort === index && styles["active"])}
 					>
 						{item.sortName}
 					</li>

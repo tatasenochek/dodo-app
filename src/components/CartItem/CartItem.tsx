@@ -1,9 +1,15 @@
+import styles from "./cart-item.module.scss";
 import { Minus, Plus, X } from "lucide-react";
-import { Button } from "../Button/Button";
-import { addProduct, deleteProduct, IProduct, removeProduct } from "../../store/slice/cartSlice";
+import {
+	addProduct,
+	deleteProduct,
+	IProduct,
+	removeProduct,
+} from "../../store/slice/cartSlice";
 import { typePizza } from "../../constant/constant";
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
+import { Button } from "../Button/Button";
 
 export function CartItem({ product }: { product: IProduct }) {
 	const dispatch = useDispatch();
@@ -21,40 +27,54 @@ export function CartItem({ product }: { product: IProduct }) {
 	}
 
 	return (
-		<li className="catr-item">
-			<div className="catr-item__description">
+		<li className={styles["catr-item"]}>
+			<div className={styles["catr-item__description"]}>
 				<img
-					className="catr-item__description--image"
+					className={styles["catr-item__description--image"]}
 					src={product.imageUrl}
 					alt={product.title}
 				/>
-				<h2 className="catr-item__description--title">{product.title}</h2>
-				<p className="catr-item__description--info">
+				<h2 className={styles["catr-item__description--title"]}>
+					{product.title}
+				</h2>
+				<p className={styles["catr-item__description--info"]}>
 					{typePizza[product.type]}, {product.size} см, {product.price}₽
 				</p>
 			</div>
-			<div className="catr-item__counter">
-				<Button
+			<div className={styles["catr-item__counter"]}>
+				<button
 					onClick={handlerRemoveProduct}
-					className={clsx(`catr-item__counter--button ${product.count == 1 ? "disabled" : ""}`)}
+					className={clsx(
+						styles["cart-item__button"],
+						styles["cart-item__counter--button"],
+						product.count == 1 && styles["disabled"]
+					)}
 				>
 					<Minus size={10} />
-				</Button>
+				</button>
 				<p>{product.count}</p>
-				<Button
+				<button
 					onClick={handlerAddProduct}
-					className="catr-item__counter--button"
+					className={clsx(
+						styles["cart-item__button"],
+						styles["cart-item__counter--button"]
+					)}
 				>
 					<Plus size={10} />
-				</Button>
+				</button>
 			</div>
-			<p className="catr-item__price">{product.price * product.count} ₽</p>
-			<Button
+			<p className={styles["catr-item__price"]}>
+				{product.price * product.count} ₽
+			</p>
+			<button
 				onClick={handlerDeleteProduct}
-				className="catr-item__delete-button"
+				className={clsx(
+					styles["cart-item__button"],
+					styles["cart-item__delete-button"]
+				)}
 			>
 				<X size={10} />
-			</Button>
+			</button>
 		</li>
 	);
 }

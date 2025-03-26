@@ -1,0 +1,13 @@
+.content__items {
+	padding-top: 35px;
+	display: flex;
+	row-gap: 35px;
+	column-gap: 65px;
+	flex-wrap: wrap;
+}
+
+@media (max-width: 430px) {
+	.content__items {
+		justify-content: center;
+	}
+}

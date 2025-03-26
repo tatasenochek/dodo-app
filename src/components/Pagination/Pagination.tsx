@@ -1,3 +1,4 @@
+import styles from "./pagination.module.scss"
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IPagination } from "./types";
 import clsx from "clsx";
@@ -9,11 +10,12 @@ export function Pagination({
 	handlePrevPage,
 	handleNextPage,
 }: IPagination) {
-  return (
-    <ul className="pagination__list">
+	return (
+		<ul className={styles["pagination__list"]}>
 			<button
 				className={clsx(
-					`pagination__item ${currentPage === 1 ? "disabled" : ""}`
+					styles["pagination__item"],
+					currentPage === 1 && styles["disabled"]
 				)}
 				onClick={handlePrevPage}
 			>
@@ -23,7 +25,8 @@ export function Pagination({
 			{[...Array(pageCount)].map((_, index) => (
 				<li
 					className={clsx(
-						`pagination__item ${currentPage === index + 1 ? "item-active" : ""}`
+						styles["pagination__item"],
+						currentPage === index + 1 && styles["item-active"]
 					)}
 					key={index}
 					onClick={() => setCurrentPage(index + 1)}
@@ -34,7 +37,8 @@ export function Pagination({
 
 			<button
 				className={clsx(
-					`pagination__item ${currentPage === pageCount ? "disabled" : ""}`
+					styles["pagination__item"],
+					currentPage === pageCount && styles["disabled"]
 				)}
 				onClick={handleNextPage}
 			>

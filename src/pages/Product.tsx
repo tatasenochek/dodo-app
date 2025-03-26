@@ -1,3 +1,4 @@
+import styles from "../scss/pages/product.module.scss";
 import clsx from "clsx";
 import { ChevronLeft, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -41,26 +42,26 @@ export default function Product() {
 	}
 
 	return (
-		<div className="product">
-			<Link to="/" className="product__link">
+		<div className={styles["product"]}>
+			<Link to="/" className={styles["product__link"]}>
 				<ChevronLeft />
 				Назад
 			</Link>
 			<img
-				className="product__image"
+				className={styles["product__image"]}
 				src={pizza?.imageUrl}
 				alt={pizza?.title}
 			/>
-			<div className="product__info">
-				<h4 className="product__title">{pizza?.title}</h4>
+			<div className={styles["product__info"]}>
+				<h4 className={styles["product__title"]}>{pizza?.title}</h4>
 				<p>{pizza?.description}</p>
-				<div className="product__selector">
+				<div className={styles["product__selector"]}>
 					<ul>
 						{pizza?.types.map((i, index) => (
 							<li
 								key={index}
 								onClick={() => setPizzaType(index)}
-								className={clsx(`${pizzaType === index ? "active" : ""}`)}
+								className={clsx(pizzaType === index && styles["active"])}
 							>
 								{typePizza[i]}
 							</li>
@@ -71,21 +72,18 @@ export default function Product() {
 							<li
 								key={index}
 								onClick={() => setPizzaSize(index)}
-								className={clsx(`${pizzaSize === index ? "active" : ""}`)}
+								className={clsx(pizzaSize === index && styles["active"])}
 							>
 								{item} см.
 							</li>
 						))}
 					</ul>
 				</div>
-				<div className="product__bottom">
-					<div className="product__price">от {pizza?.price} ₽</div>
-					<button
-						className="button card-button"
-						onClick={handlerAddProduct}
-					>
+				<div className={styles["product__bottom"]}>
+					<div className={styles["product__price"]}>от {pizza?.price} ₽</div>
+					<button className={clsx(styles["button"], styles["card-button"])} onClick={handlerAddProduct}>
 						<Plus size={16} />
-						<span className="card-button__text">Добавить</span>
+						<span>Добавить</span>
 					</button>
 				</div>
 			</div>

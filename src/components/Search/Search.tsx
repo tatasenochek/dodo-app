@@ -1,3 +1,4 @@
+import styles from "./search.module.scss";
 import { SearchIcon } from "lucide-react";
 import { ChangeEvent, useEffect, useState } from "react";
 import { RootState } from "../../store/store";
@@ -24,11 +25,11 @@ export function Search() {
 	}, [debounce, dispatch, searchValue]);
 
 	return (
-		<label className="search">
-			<SearchIcon className="search__icon" />
+		<label className={styles["search"]}>
+			<SearchIcon className={styles["search__icon"]} />
 			<input
 				value={value}
-				className="search__input"
+				className={styles["search__input"]}
 				type="search"
 				placeholder="Поиск пиццы..."
 				onChange={(e: ChangeEvent<HTMLInputElement>) =>

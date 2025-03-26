@@ -1,4 +1,4 @@
-@use "../variables" as *;
+@use "../../scss/variables" as *;
 
 .header {
 	border-bottom: 1px solid $color-light-darck;
@@ -26,6 +26,18 @@
 			font-size: clamp(0.625rem, 0.622vw + 0.479rem, 1rem);
 			width: clamp(6.25rem, 16.684vw + 2.34rem, 16.313rem);
 		}
+	}
+
+	.cart-button__price {
+		margin-right: 13px;
+	}
+
+	.cart-button__count {
+		display: flex;
+		gap: 8px;
+		padding-left: 13px;
+		align-items: center;
+		border-left: 1px solid rgba(255, 255, 255, 0.25);
 	}
 }
 

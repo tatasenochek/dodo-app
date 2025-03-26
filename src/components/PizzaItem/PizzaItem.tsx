@@ -1,3 +1,4 @@
+import styles from "./pizza-item.module.scss";
 import { Info, Plus } from "lucide-react";
 import { IPizzaItems } from "./types";
 import { useState } from "react";
@@ -5,10 +6,7 @@ import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { typePizza } from "../../constant/constant";
 import { useDispatch } from "react-redux";
-import {
-	addProduct,
-	IProduct,
-} from "../../store/slice/cartSlice";
+import { addProduct, IProduct } from "../../store/slice/cartSlice";
 
 export function PizzaItem({ pizza }: IPizzaItems) {
 	const [pizzaType, setPizzaType] = useState(0);
@@ -30,28 +28,28 @@ export function PizzaItem({ pizza }: IPizzaItems) {
 	}
 
 	return (
-		<div className="pizza-block">
+		<div className={styles["pizza-block"]}>
 			<Link
 				title="Подробнее о пицце"
 				to={`/product/${pizza.id}`}
-				className="pizza-block__info"
+				className={styles["pizza-block__info"]}
 			>
 				<Info />
 			</Link>
 			<img
-				className="pizza-block__image"
+				className={styles["pizza-block__image"]}
 				src={pizza.imageUrl}
 				alt={pizza.title}
 			/>
-			<h4 className="pizza-block__title">{pizza.title}</h4>
+			<h4 className={styles["pizza-block__title"]}>{pizza.title}</h4>
 
-			<div className="pizza-block__selector">
+			<div className={styles["pizza-block__selector"]}>
 				<ul>
 					{pizza.types.map((i, index) => (
 						<li
 							key={index}
 							onClick={() => setPizzaType(index)}
-							className={clsx(`${pizzaType === index ? "active" : ""}`)}
+							className={clsx(pizzaType === index && styles["active"])}
 						>
 							{typePizza[i]}
 						</li>
@@ -62,18 +60,18 @@ export function PizzaItem({ pizza }: IPizzaItems) {
 						<li
 							key={index}
 							onClick={() => setPizzaSize(index)}
-							className={clsx(`${pizzaSize === index ? "active" : ""}`)}
+							className={clsx(pizzaSize === index && styles["active"])}
 						>
 							{item} см.
 						</li>
 					))}
 				</ul>
 			</div>
-			<div className="pizza-block__bottom">
-				<div className="pizza-block__price">{pizza.price} ₽</div>
-				<button className="button card-button" onClick={handlerAddProduct}>
+			<div className={styles["pizza-block__bottom"]}>
+				<div className={styles["pizza-block__price"]}>{pizza.price} ₽</div>
+				<button className={styles["card-button"]}  onClick={handlerAddProduct}>
 					<Plus size={16} />
-					<span className="card-button__text">Добавить</span>
+					<span>Добавить</span>
 				</button>
 			</div>
 		</div>

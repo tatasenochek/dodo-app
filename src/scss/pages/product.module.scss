@@ -1,0 +1,112 @@
+@use "../variables" as *;
+
+.product {
+	text-align: center;
+	margin-bottom: 65px;
+	display: flex;
+	gap: 30px;
+	margin-top: 40px;
+	padding: 80px 20px 20px;
+	border-radius: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	background-color: $color-light-darck;
+	position: relative;
+
+	&__link {
+		color: $color-darck;
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		display: flex;
+		gap: 10px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__image {
+		width: clamp(18.75rem, 29.43vw + 11.852rem, 36.5rem);
+		height: 100%;
+	}
+
+	&__info {
+		max-width: 300px;
+
+		p {
+			width: 280px;
+		}
+	}
+
+	&__title {
+		font-size: 20px;
+		font-weight: 900;
+		letter-spacing: 1%;
+		margin-bottom: 20px;
+	}
+
+	&__selector {
+		display: flex;
+		background-color: $color-light-darck;
+		border-radius: 10px;
+		flex-direction: column;
+		padding: 6px;
+
+		ul {
+			display: flex;
+			flex: 1;
+
+			&:first-of-type {
+				margin-bottom: 6px;
+			}
+
+			li {
+				padding: 8px;
+				flex: 1;
+				cursor: pointer;
+				font-weight: 600;
+				font-size: 14px;
+
+				&.active {
+					background: $color-light;
+					box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.07);
+					border-radius: 5px;
+					cursor: auto;
+				}
+			}
+		}
+	}
+
+	&__bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 20px;
+	}
+
+	&__price {
+		font-weight: bold;
+		font-size: 22px;
+		line-height: 27px;
+		letter-spacing: 0.015em;
+	}
+
+	.card-button {
+		border: 1px solid $color-accent;
+		color: $color-accent;
+		display: flex;
+		gap: 8px;
+		align-items: center;
+		background-color: transparent;
+		transition: all 0.3s;
+
+		svg {
+			stroke-width: 3px;
+		}
+	}
+
+	.card-button:hover {
+		color: $color-light;
+		background-color: $color-accent;
+	}
+}

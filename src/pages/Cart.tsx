@@ -1,3 +1,4 @@
+import styles from "../scss/pages/cart.module.scss";
 import { ChevronLeft, ShoppingCart, Trash2 } from "lucide-react";
 import { Title } from "../components/Title/Title";
 import { Button } from "../components/Button/Button";
@@ -30,12 +31,12 @@ export default function Cart() {
 	}
 
 	return (
-		<div className="cart">
+		<div className={styles["cart"]}>
 			{totalPrice === 0 ? (
 				<Empty />
 			) : (
 				<>
-					<div className="cart__header">
+					<div className={styles["cart__header"]}>
 						<Title>
 							<ShoppingCart />
 							Корзина
@@ -48,29 +49,34 @@ export default function Cart() {
 							Очистить корзину
 						</Button>
 					</div>
-					<ul className="cart__list">
+					<ul className={styles["cart__list"]}>
 						{products.map((p) => (
 							<CartItem key={p.id} product={p} />
 						))}
 					</ul>
-					<div className="cart__total">
-						<p className="cart__total--count">
+					<div className={styles["cart__total"]}>
+						<p className={styles["cart__total--count"]}>
 							Всего пицц: <b>{count} шт.</b>
 						</p>
-						<p className="cart__total--price">
+						<p className={styles["cart__total--price"]}>
 							Сумма заказа: <b>{totalPrice} ₽</b>
 						</p>
 					</div>
-					<div className="cart__action">
-						<Link to="/" className="cart__action--link">
+					<div className={styles["cart__action"]}>
+						<Link to="/" className={styles["cart__action--link"]}>
 							<ChevronLeft />
 							Вернуться назад
 						</Link>
 						{isAuth ? (
 							""
 						) : (
-							<Link to="/success" >
-								<Button onClick={handlerOrder} className="cart__action--button-pay">Оплатить сейчас</Button>
+							<Link to="/success">
+								<Button
+									onClick={handlerOrder}
+									className="cart__action--button-pay"
+								>
+									Оплатить сейчас
+								</Button>
 							</Link>
 						)}
 					</div>
