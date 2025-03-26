@@ -22,7 +22,7 @@ export function Header() {
 		<header className={styles["header"]}>
 			<Link to={"/"}>
 				<div className={styles["header__logo"]}>
-					<img src="/logo.svg" alt="логотип пиццерии" />
+					<img src="./logo.svg" alt="логотип пиццерии" />
 					<div>
 						<h1>React Pizza</h1>
 						<p>самая вкусная пицца во вселенной</p>
