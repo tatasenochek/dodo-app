@@ -9,7 +9,6 @@ import {
 import { typePizza } from "../../constant/constant";
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
-import { Button } from "../Button/Button";
 
 export function CartItem({ product }: { product: IProduct }) {
 	const dispatch = useDispatch();
